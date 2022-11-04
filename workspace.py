@@ -127,9 +127,14 @@ def helpful_percentage(movie_reviews):
     #traverse through the movie reviews
     for i in range(len(movie_reviews['data']['reviews'])):
         # create the function (upvotes/(total votes)) and multiply it by 100 and round to make it easily readable
+        #Make the number a string
+        rawpercentage = str(round((movie_reviews['data']['reviews'][i]['helpful'] /
+                          (movie_reviews['data']['reviews'][i]['helpful'] + movie_reviews['data']['reviews'][i]['not_helpful']))*100))
+        #add a percent sign to the percentage number to allow for bette undestanding by user
+        percentage = f"{rawpercentage}%"
+        #create a  new dictionary with author as key and the percent upvotes as value
         votesd[movie_reviews["data"]['reviews'][i]['author']
-               ] = round((movie_reviews['data']['reviews'][i]['helpful'] /
-                          (movie_reviews['data']['reviews'][i]['helpful'] + movie_reviews['data']['reviews'][i]['not_helpful']))*100)
+               ] = percentage
     #return the finished dictionary
     return (votesd)
 
